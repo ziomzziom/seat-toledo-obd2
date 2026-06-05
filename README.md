@@ -162,7 +162,6 @@ Ustawienie ręczne: `ATSP3` lub `ATSP4` (KWP 5BAUD).
 ### Plik danych
 Format CSV: `czas,rpm,maf,map,boost,coolant,intake,speed,timing`
 
-## Autor
+## Autor: Kacper Szafram
 
-Diagnostyka przeprowadzona przez OpenCode AI.
 Dane zebrane na żywo z pojazdu przez interfejs ELM327 Bluetooth.
