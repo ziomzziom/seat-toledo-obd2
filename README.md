@@ -97,7 +97,7 @@ seat-toledo-obd2/
 ├── data/
 │   └── obd_dane.txt           ← zebrane dane z jazdy próbnej
 └── scripts/
-    ├── obd_logger.py          ← główny logger OBD2 (zalecany)
+    ├── obd_logger_v4.py       ← główny logger OBD2 (zalecany, v4)
     ├── read_dtc.py            ← odczyt kodów błędów DTC
     ├── bt_pair.py             ← parowanie ELM327 przez D-Bus
     └── run_obd.sh             ← wrapper startowy
@@ -130,7 +130,7 @@ lub ręcznie:
 ```bash
 bluetoothctl connect A2:2A:19:04:00:00 &
 sleep 4
-python3 scripts/obd_logger.py
+python3 scripts/obd_logger_v4.py
 ```
 
 ### Zbieranie danych podczas jazdy
