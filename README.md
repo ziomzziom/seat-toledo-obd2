@@ -126,18 +126,36 @@ Używany w projekcie **ELM327 Bluetooth (TDA81)** okazał się niewystarczający
 
 ---
 
-## 8. Struktura repozytorium
+## 8. Galeria zdjęć
+
+Zdjęcia dokumentujące proces diagnostyki znajdują się w katalogu `photo/`:
+
+| Zdjęcie | Opis |
+|---------|------|
+| `photo/elm327.jpg` | Interfejs ELM327 Bluetooth użyty w projekcie (klon TDA81) |
+| `photo/toledo_incar.jpeg` | Wnętrze pojazdu z laptopem podczas diagnostyki |
+| `photo/komora_silnika.jpg` | Komora silnika 1.9 TDI ASV – lokalizacja EGR, N75 |
+| `photo/urywek_diagnostyki.jpeg` | Fragment sesji diagnostycznej z AI (OpenCode) |
+
+## 9. Struktura repozytorium
 
 ```
 seat-toledo-obd2/
 ├── README.md                  ← niniejszy raport
 ├── WNIOSKI.md                 ← luźne podsumowanie projektu
 ├── PROMPT_DIAGNOSTYKI.md      ← prompt do powtórzenia diagnostyki
+├── raport.pdf                 ← praca zaliczeniowa (PDF)
+├── raport.tex                 ← źródło LaTeX
 ├── .gitignore
 ├── archive/                   ← stare wersje skryptów
 ├── data/
 │   ├── obd_dane.txt           ← zebrane dane z jazdy próbnej
 │   └── obd_dane.csv           ← dane w formacie CSV
+├── photo/
+│   ├── elm327.jpg             ← zdjęcie interfejsu ELM327
+│   ├── toledo_incar.jpeg      ← wnętrze z laptopem
+│   ├── komora_silnika.jpg     ← komora silnika
+│   └── urywek_diagnostyki.jpeg ← sesja z AI
 └── scripts/
     ├── obd_logger_v4.py       ← główny logger OBD2 (zalecany)
     ├── read_dtc.py            ← odczyt kodów błędów DTC
@@ -181,7 +199,7 @@ gh repo create seat-toledo-obd2 --public --source=. --remote=origin --push
 
 ---
 
-## 10. Uwagi techniczne
+## 11. Uwagi techniczne
 
 ### ELM327
 Adapter użyty w diagnostyce to chiński klon na chipie **TDA81** (identyfikuje się jako ELM327 v2.1).
