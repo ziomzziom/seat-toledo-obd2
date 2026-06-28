@@ -128,14 +128,14 @@ Używany w projekcie **ELM327 Bluetooth (TDA81)** okazał się niewystarczający
 
 ## 8. Galeria zdjęć
 
-Zdjęcia dokumentujące proces diagnostyki znajdują się w katalogu `photo/`:
+Zdjęcia dokumentujące proces diagnostyki:
 
 | Zdjęcie | Opis |
 |---------|------|
-| `photo/elm327.jpg` | Interfejs ELM327 Bluetooth użyty w projekcie (klon TDA81) |
-| `photo/toledo_incar.jpeg` | Wnętrze pojazdu z laptopem podczas diagnostyki |
-| `photo/komora_silnika.jpg` | Komora silnika 1.9 TDI ASV – lokalizacja EGR, N75 |
-| `photo/urywek_diagnostyki.jpeg` | Fragment sesji diagnostycznej z AI (OpenCode) |
+| ![ELM327](photo/elm327.jpg) | Interfejs ELM327 Bluetooth (klon TDA81) |
+| ![Wnętrze](photo/toledo_incar.jpeg) | Wnętrze pojazdu z laptopem podczas diagnostyki |
+| ![Silnik](photo/komora_silnika.jpg) | Komora silnika 1.9 TDI ASV |
+| ![Sesja AI](photo/urywek_diagnostyki.jpeg) | Fragment sesji diagnostycznej z OpenCode |
 
 ## 9. Struktura repozytorium
 
