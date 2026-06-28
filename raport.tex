@@ -3,6 +3,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{hyperref}
@@ -212,6 +214,26 @@ Wymienia uszczelkę & Przetwarza CSV w sekundę \\
 Zna realia warsztatu & Wskazuje prawdopodobne przyczyny \\
 \bottomrule
 \end{tabular}
+
+\section{Zdjęcia z diagnostyki}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{photo/elm327.jpg}
+\caption{Interfejs ELM327 Bluetooth (klon TDA81) użyty w projekcie}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{photo/komora_silnika.jpg}
+\caption{Komora silnika 1.9 TDI ASV – lokalizacja EGR, N75 i turbiny}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{photo/urywek_diagnostyki.jpeg}
+\caption{Fragment sesji diagnostycznej z AI (OpenCode) – odczyt danych OBD2}
+\end{figure}
 
 \section{Wnioski i rekomendacje}
 
