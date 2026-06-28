@@ -1,115 +1,155 @@
-# Seat Toledo 2 OBD2 Diagnostyka
+# Seat Toledo 2 (1.9 TDI ASV) – Raport diagnostyczny
 
-Diagnostyka OBD2 dla Seata Toledo 2 z silnikiem **1.9 TDI ASV (110 KM)** przez interfejs **ELM327 Bluetooth**.
+## 1. Opis problemu
+Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie od wciśnięcia pedału gazu. Dodatkowo występuje:
+- **Świst** przy ok. **1800 obr/min**
+- **Kliknięcie** przy ok. **1500 obr/min** (słyszalne po zdjęciu obudowy silnika)
 
-## Opis problemu
+---
 
-Samochód traci moc i nie rozpędza się powyżej 120 km/h – niezależnie od wciśnięcia pedału gazu.
+## 2. Przeprowadzone testy i wyniki
 
-## Przeprowadzone testy
+### 2.1. MAF (przepływomierz) – ✅ SPRAWNY
+| Stan | RPM | MAF (g/s) | Norma | Werdykt |
+|------|-----|-----------|-------|---------|
+| Jałowy (zimny) | ~900 | 13,8 | 4–10 | ⚠️ Podwyższony (zimny silnik + EGR) |
+| Jałowy (ciepły) | ~900 | 8,3–8,7 | 4–10 | ✅ Prawidłowy |
+| Pełne obciążenie | 2238 | 71,1 | 45–55 | ✅ Wysoki, ale zdrowy |
 
-### 1. MAF (przepływomierz) – ✅ SPRAWNY
+**Wniosek:** MAF działa poprawnie – **nie wymieniać**.
 
-| Stan silnika | RPM | MAF (g/s) | Norma | Werdykt |
-|---|---|---|---|---|
-| Zimny (56°C) | ~900 | **13.8 g/s** | 4-10 | ⚠️ Podwyższony – zimny silnik + EGR |
-| Ciepły (83-91°C) | ~900 | **8.3-8.7 g/s** | 4-10 | ✅ Normalny |
-| Pod obciążeniem (~2300 RPM) | 2238 | **71.1 g/s** | 45-55 | ✅ Wysoki, ale zdrowy |
+---
 
-**Wniosek:** MAF działa poprawnie. Wartość 13 g/s na zimnym silniku jest normalna – wyższe dawkowanie paliwa = więcej powietrza.
+### 2.2. MAP / doładowanie – 🔴 OVERBOOST
+| RPM | MAP (kPa) | Boost (bar) | Norma | Werdykt |
+|-----|-----------|-------------|-------|---------|
+| 1634 | 180 | **+0,80** | +0,5–0,6 | ⚠️ Zbyt wysoki jak na te obroty |
+| 1846 | 178 | **+0,78** | +0,5–0,6 | ⚠️ **Źródło świstu** |
+| 2238 | **248** | **+1,48** | +1,2–1,3 | 🔴 **OVERBOOST – odcięcie mocy** |
 
-### 2. Turbina / Boost – ⚠️ NADMIERNE DOŁADOWANIE
+**Wniosek:** Overboost jest realny i powoduje odcięcie paliwa przez ECU → brak mocy powyżej 120 km/h.
 
-| Moment | RPM | MAP (kPa) | Boost (bar) |
-|---|---|---|---|
-| Jałowy | ~900 | 100 | +0.01 |
-| Lekkie przyspieszenie | 1634 | 180 | **+0.80** |
-| Mocne przyspieszenie | 2306 | 217 | **+1.17** |
-| **MAX** | **2238** | **248** | **+1.48 🔴** |
+---
 
-**Norma fabryczna dla ASV: 220-230 kPa / +1.2-1.3 bar**
+### 2.3. EGR – 🔴 NIESZCZELNOŚĆ WIZUALNA
+- Uszczelka EGR **ewidentnie do wymiany** – stwierdzona nieszczelność przez mechanika.
 
-**+1.48 bar to overboost!** Turbina dostarcza za dużo ciśnienia. Prawdopodobnie N75 nie odcina boosta prawidłowo.
+---
 
-### 3. Kody błędów (DTC) – ✅ BRAK
+### 2.4. Dodatkowe objawy
+| Objaw | Przyczyna (prawdopodobna) |
+|-------|----------------------------|
+| Kliknięcie przy 1500 obr/min | Uszkodzony N75 (zawór sterujący turbiną) – charakterystyczne klikanie przy modulacji PWM |
+| Świst przy 1800 obr/min | Nadmiar ciśnienia + nieszczelność (EGR lub węże) |
 
-| Metoda | Wynik | Znaczenie |
-|--------|-------|-----------|
-| `03` (stored) | NO DATA | Brak zapisanych kodów |
-| `0101` (status) | MIL off, 0 DTC | Brak usterek w ECU |
-| `07` (pending) | NO DATA | Brak oczekujących kodów |
-| `0A` (permanent) | NO DATA | Brak permanentnych kodów |
+---
 
-**Wniosek:** ECU nie widzi błędów. Overboost nie jest rejestrowany jako usterka (krótkotrwały).
-Uwaga: potwierdzone kody DTC nie znikają same – trzeba je kasować narzędziem diagnostycznym.
+### 2.5. Kody błędów – ✅ BRAK
+- Brak kodów DTC (stored, pending, permanent) – overboost nie jest rejestrowany jako trwały błąd, tylko chwilowe odcięcie paliwa.
 
-### 4. Dodatkowe obserwacje
+---
 
-| Parametr | Wartość | Ocena |
-|----------|---------|-------|
-| Temp płynu | 83-91°C | ✅ Normalna |
-| Temp dolotu | 42-50°C | ✅ Normalna |
-| Kąt wyprzedzenia | -2° do +8° | ✅ Normalny dla TDI |
-| Napięcie | 14.1V | ✅ Alternator ładuje |
-| **EGR** | **cieknie** | 🔴 Nieszczelność wizualna |
+## 3. Przyczyny (ranking prawdopodobieństwa)
 
-## Wnioski końcowe
+| Priorytet | Przyczyna | Opis |
+|-----------|-----------|------|
+| **1** | **N75** (zawór sterujący turbiną) | Uszkodzony lub zabrudzony – nie odcina podciśnienia, geometria turbiny w pozycji max doładowania → overboost. Kliknięcie przy 1500 RPM to typowy objaw. |
+| **2** | **Wężyki podciśnieniowe** (N75 → siłownik VNT) | Pęknięte, sparciałe lub zatkane olejem – nie przenoszą sygnału do siłownika. |
+| **3** | **Siłownik VNT** (zapieczona geometria) | Zablokowane łopatki turbiny w pozycji "full boost" – wymaga czyszczenia lub regeneracji. |
+| **4** | **Uszczelka EGR** | Nieszczelność w układzie dolotowym – pogłębia problem, ale nie jest główną przyczyną overboostu. |
 
-### Co jest sprawne:
-- MAF (przepływomierz) – ✅
-- Temperatura silnika – ✅
-- Temperatura dolotu – ✅
-- Kąty wyprzedzenia – ✅
-- Brak kodów błędów – ✅
+---
 
-### Co podejrzane:
-1. **Overboost (+1.48 bar)** – turbina daje za dużo ciśnienia (norma ~1.2-1.3 bar)
-2. **Cieknący EGR** – nieszczelność w układzie dolotowym
-3. **N75 lub wężyki podciśnienia** – prawdopodobna przyczyna overboost
+## 4. Rekomendowane czynności (kolejność)
 
-### Teoria: dlaczego auto nie jedzie >120 km/h
+### ✅ Krok 1: Zamień N75 z N18 (EGR) – TEST ZA 0 ZŁ
+- Oba zawory są **identyczne**.
+- Jeśli overboost zniknie → **wymień N75**.
+- Jeśli overboost pozostanie → problem w mechanice turbiny lub wężykach.
 
-```
-Przyspieszasz → boost rośnie → +1.48 bar (overboost) →
-ECU wyczuwa nadmiar → wchodzi LIMP MODE (odcina paliwo) →
-moc spada → nie możesz jechać szybciej
+### ✅ Krok 2: Wymień uszczelkę EGR
+- **Numer części:** 028 131 547 A lub zamiennik ELRING 815.187
+- **Koszt:** ok. 20–40 zł za zestaw
 
-LUB:
-Cieknący EGR → nieszczelny dolot → zaburzone dawkowanie →
-spadek mocy przy wysokich obrotach
-```
+### ✅ Krok 3: Sprawdź wężyki podciśnienia
+- Wymień wszystkie spękane lub miękkie (śr. wewn. 3–4 mm).
 
-### Rekomendowane czynności (kolejność):
+### ✅ Krok 4: Sprawdź siłownik VNT
+- Przy wyłączonym silniku – ręcznie pociągnij drążek. Powinien chodzić płynnie na całym skoku (10–15 mm).
 
-1. **Sprawdź wężyki podciśnienia** – szczególnie przy N75 i siłowniku turbiny (często pękają)
-2. **Sprawdź N75 multimetrem** – oporność powinna być 15-20 Ω
-3. **Sprawdź siłownik VNT** – czy drążek rusza się ręcznie (przy wyłączonym silniku)
-4. **Wymień uszczelkę EGR** – skoro cieknie
-5. **Kolejna jazda testowa** – pełny gaz 3. bieg 60→120 km/h z logerem
+---
 
-## Struktura repozytorium
+## 5. Podsumowanie
+
+| Element | Stan | Decyzja |
+|---------|------|---------|
+| MAF | ✅ Sprawny | Nie wymieniać |
+| MAP | ✅ Sprawny | Nie wymieniać |
+| N75 | 🔴 Podejrzany | Test zamiany z N18 |
+| Wężyki podciśnienia | ❓ Nie sprawdzone | Sprawdzić i wymienić |
+| Siłownik VNT | ❓ Nie sprawdzony | Sprawdzić ręcznie |
+| Uszczelka EGR | 🔴 Do wymiany | Kupić zestaw (20–40 zł) |
+
+---
+
+## 6. Rekomendacja zakupu VAG KKL 409.1
+
+Używany w projekcie **ELM327 Bluetooth (TDA81)** okazał się niewystarczający:
+- Klon na chipie TDA81 nie obsługuje poprawnie KWP 2000 dla VAG – DTC zwraca "NO DATA"
+- Niestabilne połączenie Bluetooth – częste page timeout, wymagany power cycle
+- Działa tylko dla live data (RPM, MAF, MAP) ale nie do pełnej diagnostyki
+
+**Rekomendacja:** zakup kabla **VAG KKL 409.1 z FT232RL** (ok. 80 zł) + **VCDS Lite** (darmowy):
+- Stabilna komunikacja przez USB
+- Pełny odczyt/kasowanie DTC wszystkich modułów
+- Live data, adaptacje, podstawowe konfiguracje
+- Współpraca z KWP2000 Flasher do backupu softu ECU
+
+---
+
+## 7. Spostrzeżenia z projektu
+
+### Co dała AI
+- Szybkie generowanie skryptów Python do komunikacji OBD2
+- Promptowanie przyspieszyło diagnostykę – analiza danych w czasie rzeczywistym
+- Automatyzacja zbierania danych do CSV
+- Pomoc w interpretacji wyników (overboost, normy MAF)
+
+### Ograniczenia
+- AI nie widzi fizycznych usterek – klikający N75, cieknący EGR, pęknięte wężyki
+- Nie zastąpi dotknięcia / obejrzenia / posłuchania silnika
+- Jakość diagnostyki ograniczona sprzętem – słaby ELM327 = słabe dane = gorsze wnioski
+
+### Co byśmy zrobili inaczej
+- Zaczęli od VAG KKL + VCDS, nie tracąc czasu na klon ELM327
+- Sprawdzili N75 i wężyki w pierwszej kolejności (fizycznie, nie przez OBD2)
+
+---
+
+## 8. Struktura repozytorium
 
 ```
 seat-toledo-obd2/
-├── README.md                  ← niniejszy plik
+├── README.md                  ← niniejszy raport
+├── WNIOSKI.md                 ← luźne podsumowanie projektu
+├── PROMPT_DIAGNOSTYKI.md      ← prompt do powtórzenia diagnostyki
 ├── .gitignore
 ├── archive/                   ← stare wersje skryptów
 ├── data/
-│   └── obd_dane.txt           ← zebrane dane z jazdy próbnej
+│   ├── obd_dane.txt           ← zebrane dane z jazdy próbnej
+│   └── obd_dane.csv           ← dane w formacie CSV
 └── scripts/
-    ├── obd_logger_v4.py       ← główny logger OBD2 (zalecany, v4)
+    ├── obd_logger_v4.py       ← główny logger OBD2 (zalecany)
     ├── read_dtc.py            ← odczyt kodów błędów DTC
     ├── bt_pair.py             ← parowanie ELM327 przez D-Bus
     └── run_obd.sh             ← wrapper startowy
 ```
 
-## Instrukcja użycia
+## 9. Instrukcja użycia
 
 ### Wymagania
-- Python 3
-- BlueZ (bluetoothctl)
-- ELM327 v2.1 lub compatible (sparowany PIN 1234)
-- Konto GitHub (do publikacji)
+- Python 3, BlueZ (bluetoothctl)
+- ELM327 v2.1 (sparowany PIN 1234) lub VAG KKL 409.1
 
 ### Parowanie ELM327
 ```bash
@@ -133,35 +173,29 @@ sleep 4
 python3 scripts/obd_logger_v4.py
 ```
 
-### Zbieranie danych podczas jazdy
-1. Odpal silnik, podłącz ELM327
-2. Uruchom `./scripts/run_obd.sh`
-3. Poczekaj na komunikat "RPM OK" (~5-10s)
-4. Jedź – dane zapisują się do `data/obd_dane.txt`
-5. Ctrl+C by zatrzymać
-
 ### Publikacja na GitHub
 ```bash
-gh auth login        # jednorazowo – logowanie przez przeglądarkę
+gh auth login        # jednorazowo
 gh repo create seat-toledo-obd2 --public --source=. --remote=origin --push
 ```
 
-## Uwagi techniczne
+---
+
+## 10. Uwagi techniczne
 
 ### ELM327
-Adapter użyty w diagnostyce to chiński klon oparty na chipie **TDA81** (identyfikujący się jako ELM327 v2.1).
-Działa z protokołem ISO 9141-2 (K-line) dla VAG, ale ma ograniczenia:
-- ❌ Nie czyta DTC z niektórych ECU VAG przez KWP
-- ⚠️ Niestabilne połączenie – wymaga czasem power-cyklu
-- ✅ Działa dla live data (RPM, MAF, MAP itp.)
-
-### Protokół
-Dla 1.9 TDI ASV: **ISO 9141-2** (wykrywany automatycznie jako protokół A3).
-Ustawienie ręczne: `ATSP3` lub `ATSP4` (KWP 5BAUD).
+Adapter użyty w diagnostyce to chiński klon na chipie **TDA81** (identyfikuje się jako ELM327 v2.1).
+- Protokół ASV: **ISO 9141-2** (wykrywany jako A3)
+- Ręczne ustawienie: `ATSP3` lub `ATSP4` (KWP 5BAUD)
+- DTC przez KWP nie działa na tym klonie
 
 ### Plik danych
 Format CSV: `czas,rpm,maf,map,boost,coolant,intake,speed,timing`
 
-## Autor: Kacper Szafram
+---
 
-Dane zebrane na żywo z pojazdu przez interfejs ELM327 Bluetooth.
+## Autor  
+**Kacper Szafram**  
+
+Dane zebrane na żywo z pojazdu przez interfejs ELM327 Bluetooth.  
+Raport przygotowany przy użyciu narzędzi AI (OpenCode), Python, BlueZ, git/GitHub.
