@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{servicered}{RGB}{180,30,20}
+\definecolor{steelgray}{RGB}{70,80,90}
+\definecolor{lightgray}{RGB}{240,242,245}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{servicered}{\textbf{SERWIS POJAZDU}}}
+\fancyhead[R]{\small\textcolor{steelgray}{1.9 TDI ASV}}
+\fancyfoot[C]{\small\textcolor{steelgray}{strona \thepage}}
+
+\setlength{\headheight}{14pt}
+
+\begin{document}
+
+\begin{center}
+{\color{servicered}\rule{\textwidth}{3pt}}\\[0.4cm]
+{\Huge \textbf{LISTA ZAKUPÓW}}\\[0.3cm]
+{\Large \textcolor{steelgray}{Seat Toledo 2 \,\,$|$\, \, 1.9 TDI ASV (110 KM)}}\\[0.2cm]
+{\normalsize \textcolor{steelgray}{Przebieg: 366\,000 km \,\,$|$\,\, serwis rozrządu + czyszczenie EGR}}\\[0.4cm]
+{\color{servicered}\rule{\textwidth}{3pt}}
+\end{center}
+
+\vspace{0.5cm}
+
+\section*{\textcolor{servicered}{\rule[0.3em]{0.5cm}{2pt}\;\;1. ROZRZĄD}}
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\bfseries}p{6cm} p{8.5cm}}
+\hline
+Komplet rozrządu (pasek + napinacz + 3 rolki) & SKF VKMA 04122 / Gates K015552XS / ContiTech CT1006K2 \\
+Pompa wody & GRAF / Hepu / SKF (zwykle w zestawie) \\
+Płyn chłodniczy G12 (różowy) & ~5–6 l – wymiana przy okazji pompy wody \\
+\hline
+\end{tabular}
+\end{table}
+
+\section*{\textcolor{servicered}{\rule[0.3em]{0.5cm}{2pt}\;\;2. FILTRY I OLEJ}}
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\bfseries}p{6cm} p{8.5cm}}
+\hline
+Filtr oleju & MANN W 940/25 / Mahle OC 1087 \\
+Olej silnikowy 5W-40 ACEA B4 & ~4,5–5 l (Castrol Edge / Mobil 1 / Motul 8100) \\
+Filtr paliwa & MANN WK 842/10 \\
+Filtr powietrza & MANN C 21 302/1 \\
+Filtr kabinowy & MANN CUK 2607 \\
+\hline
+\end{tabular}
+\end{table}
+
+\section*{\textcolor{servicered}{\rule[0.3em]{0.5cm}{2pt}\;\;3. EGR — CZYSZCZENIE}}
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\bfseries}p{6cm} p{8.5cm}}
+\hline
+Uszczelka EGR & ELRING 815.187 / oryg. 028 131 547 A \\
+Uszczelka kolektora dolotowego & przy demontażu EGR \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{0.4cm}
+
+\section*{\textcolor{servicered}{\rule[0.3em]{0.5cm}{2pt}\;\;4. UWAGI SERWISOWE}}
+\begin{itemize}[leftmargin=1.2em]
+    \item \textbf{Bagnet miarki oleju wyskakuje} – brak uszczelki oryginalnie.
+          Sprawdzić \textbf{odpowietrznik skrzyni korbowej (CCV)} – najprawdopodobniej zapchany.
+          Ewentualnie test sprężania (podejrzenie pierścieni).
+    \item \textbf{Czyszczenie EGR} wykonać benzyną.
+    \item \textbf{Zamiana zaworów N75 $\leftrightarrow$ N18} (test overboostu przy utracie mocy >120 km/h).
+    \item \textbf{Sprawdzić wężyki podciśnienia} (sparciałe / spękane).
+    \item \textbf{Płyn chłodniczy} – gdy nieznana data wymiany, wymienić.
+\end{itemize}
+
+\vspace{0.6cm}
+
+\begin{center}
+{\color{servicered}\rule{\textwidth}{1pt}}\\[0.3cm]
+{\small \textcolor{steelgray}{Przedstaw do kosztorysu mechanikowi \,\,$\bullet$\,\, potwierdź ceny \,\,$\bullet$\,\, sprawdź kompatybilność części przed zakupem}}\\[0.3cm]
+{\color{servicered}\rule{\textwidth}{3pt}}
+\end{center}
+
+\end{document}
