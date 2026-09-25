@@ -44,8 +44,10 @@ Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie 
 
 ---
 
-### 2.5. Kody błędów – ✅ BRAK
-- Brak kodów DTC (stored, pending, permanent) – overboost nie jest rejestrowany jako trwały błąd, tylko chwilowe odcięcie paliwa.
+### 2.5. Kody błędów – ✅ BRAK (ale to kluczowa informacja)
+- Brak kodów DTC (stored, pending, permanent) – **overboost nie jest zapisywany jako trwały błąd**.
+- **Potwierdzone:** po zgaszeniu i ponownym odpaleniu silnika flaga overboost/limp mode **znika**. Dlatego DTC zawsze pokazuje "NO DATA" – to nie wina klona ELM327, tylko natury tej usterki.
+- **Wniosek dla mechanika:** po podłączeniu do zgaszonego silnika nie zobaczy żadnego błędu. Trzeba łapać na żywo w trakcie jazdy (co zrobiliśmy) albo sprawdzić N75/wężyki fizycznie.
 
 ### 2.6. Złapany overboost + limp mode (dowód na żywo) 🔴
 Druga jazda testowa z loggerem potwierdziła mechanizm usterki. Zarejestrowano **dwa pełne cykle**:
