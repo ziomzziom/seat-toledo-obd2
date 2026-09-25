@@ -47,6 +47,22 @@ Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie 
 ### 2.5. Kody błędów – ✅ BRAK
 - Brak kodów DTC (stored, pending, permanent) – overboost nie jest rejestrowany jako trwały błąd, tylko chwilowe odcięcie paliwa.
 
+### 2.6. Złapany overboost + limp mode (dowód na żywo) 🔴
+Druga jazda testowa z loggerem potwierdziła mechanizm usterki. Zarejestrowano **dwa pełne cykle**:
+
+| Czas | RPM | Boost (bar) | Zdarzenie |
+|------|-----|-------------|-----------|
+| 17:58:38 | 2637 | +1.33 | OVERBOOST |
+| 17:58:39 | 2946 | +1.36 | OVERBOOST |
+| 17:58:45 | 2572 | **+1.55** | OVERBOOST (255 kPa) |
+| 17:58:48 | 2843 | **+1.55** | OVERBOOST |
+| 17:58:49 | 2934 | **+1.55** | OVERBOOST @ 100 km/h |
+| **17:58:51** | **2932** | **+0.03** | **LIMP MODE – odcięcie paliwa** |
+
+**Kluczowe:** boost sięga **+1.55 bar** (norma 1.2-1.3), a po ~7-13 s ECU **gwałtownie odcina paliwo** – boost spada z +1.55 do +0.03 bar w 2 sekundy przy ~100 km/h. To dokładnie objaw "nie jedzie >120 km/h".
+
+Log surowy: `data/overboost_log.txt`
+
 ---
 
 ## 3. Przyczyny (ranking prawdopodobieństwa)
