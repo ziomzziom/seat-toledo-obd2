@@ -23,11 +23,11 @@ Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie 
 ### 2.2. MAP / doładowanie – 🔴 OVERBOOST
 | RPM | MAP (kPa) | Boost (bar) | Norma | Werdykt |
 |-----|-----------|-------------|-------|---------|
-| 1634 | 180 | **+0,80** | +0,5–0,6 | ⚠️ Zbyt wysoki jak na te obroty |
-| 1846 | 178 | **+0,78** | +0,5–0,6 | ⚠️ **Źródło świstu** |
-| 2238 | **248** | **+1,48** | +1,2–1,3 | 🔴 **OVERBOOST – odcięcie mocy** |
+| 1634 | 180 | **+0,80** (180 kPa) | +0,5–0,6 (150–160 kPa) | ⚠️ Zbyt wysoki jak na te obroty |
+| 1846 | 178 | **+0,78** (178 kPa) | +0,5–0,6 (150–160 kPa) | ⚠️ **Źródło świstu** |
+| 2238 | **248** | **+1,48** (248 kPa) | +1,2–1,3 (220–230 kPa) | 🔴 **OVERBOOST – odcięcie mocy** |
 
-**Wniosek:** Overboost jest realny i powoduje odcięcie paliwa przez ECU → brak mocy powyżej 120 km/h.
+**Wniosek:** Overboost jest realny i powoduje odcięcie paliwa przez ECU → brak mocy powyżej 120 km/h. Zmierzony boost **+1,48 bar = 248 kPa** (norma 220–230 kPa).
 
 ---
 
@@ -52,16 +52,16 @@ Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie 
 ### 2.6. Złapany overboost + limp mode (dowód na żywo) 🔴
 Druga jazda testowa z loggerem potwierdziła mechanizm usterki. Zarejestrowano **dwa pełne cykle**:
 
-| Czas | RPM | Boost (bar) | Zdarzenie |
-|------|-----|-------------|-----------|
-| 17:58:38 | 2637 | +1.33 | OVERBOOST |
-| 17:58:39 | 2946 | +1.36 | OVERBOOST |
-| 17:58:45 | 2572 | **+1.55** | OVERBOOST (255 kPa) |
-| 17:58:48 | 2843 | **+1.55** | OVERBOOST |
-| 17:58:49 | 2934 | **+1.55** | OVERBOOST @ 100 km/h |
-| **17:58:51** | **2932** | **+0.03** | **LIMP MODE – odcięcie paliwa** |
+| Czas | RPM | Boost (bar) | MAP (kPa) | Zdarzenie |
+|------|-----|-------------|-----------|-----------|
+| 17:58:38 | 2637 | +1.33 | 233 | OVERBOOST |
+| 17:58:39 | 2946 | +1.36 | 236 | OVERBOOST |
+| 17:58:45 | 2572 | **+1.55** | **255** | OVERBOOST |
+| 17:58:48 | 2843 | **+1.55** | **255** | OVERBOOST |
+| 17:58:49 | 2934 | **+1.55** | **255** | OVERBOOST @ 100 km/h |
+| **17:58:51** | **2932** | **+0.03** | **103** | **LIMP MODE – odcięcie paliwa** |
 
-**Kluczowe:** boost sięga **+1.55 bar** (norma 1.2-1.3), a po ~7-13 s ECU **gwałtownie odcina paliwo** – boost spada z +1.55 do +0.03 bar w 2 sekundy przy ~100 km/h. To dokładnie objaw "nie jedzie >120 km/h".
+**Kluczowe:** boost sięga **+1.55 bar = 255 kPa** (norma 1.2-1.3 bar = 220-230 kPa), a po ~7-13 s ECU **gwałtownie odcina paliwo** – boost spada z +1.55 do +0.03 bar (255 → 103 kPa) w 2 sekundy przy ~100 km/h. To dokładnie objaw "nie jedzie >120 km/h".
 
 Log surowy: `data/overboost_log.txt`
 
