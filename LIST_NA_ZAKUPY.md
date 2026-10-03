@@ -18,11 +18,18 @@
 
 **Razem: 728,66 zł brutto**
 
-## Zawory – ⏳ DO DOKUPIENIA (po teście)
-| Część | Uwagi |
-|-------|-------|
-| **Zawór N75** | Poczekać na wynik testu zamiany z N18 |
-| **Zawór N18** | Jeśli test wskaże winnego |
+## Zawory – ✅ N75 ZAMÓWIONY / ⏳ N18
+| Część | Nr kat. | Cena | Status |
+|-------|---------|------|--------|
+| **Zawór N75** | 1J0 906 627 A | 99,00 zł | ✅ **Zamówiony** (Allegro) |
+| Zawór N18 | — | — | ⏳ Nie potrzebny (brak związku z overboostem) |
+
+**Link do N75 (zamówiony):** allegro.pl – "ZAWÓR TURBINY N75 1.9TDI 1J0906627A AUDI VW SEAT"
+
+### Uwaga do diagnozy N75
+- Multimetr: **N75 (biały) = 16,8 Ω** → elektrycznie sprawny, ale **mechanicznie może być zapchany nagarem** (overboost).
+- N18 (czarny) niedostępny – **nie ma znaczenia**, bo nie steruje turbiną.
+- Wymiana N75 = naprawa + test w jednym. Jeśli po wymianie overboost zostanie → to **VNT/wężyki**.
 
 ---
 
