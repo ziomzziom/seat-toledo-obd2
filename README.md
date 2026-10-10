@@ -1,5 +1,10 @@
 # Seat Toledo 2 (1.9 TDI ASV) – Raport diagnostyczny
 
+> ## ✅ STATUS: NAPRAWIONE (2026-10-10)
+> Przy wymianie zaworu N75 wykryto **pęknięty wężyk podciśnienia** – to była prawdopodobna główna przyczyna overboostu.
+> Wymieniono: **wężyk podciśnienia + zawór N75**.
+> **Objawy ustąpiły:** brak szarpania po puszczeniu gazu, brak limp mode przy ~3000 obr/min, auto "idzie jak złoto".
+
 ## 1. Opis problemu
 Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie od wciśnięcia pedału gazu. Dodatkowo występuje:
 - **Świst** przy ok. **1800 obr/min**
@@ -46,8 +51,8 @@ Samochód traci moc i nie rozpędza się powyżej **120 km/h** – niezależnie 
 
 ### 2.5. Kody błędów – ✅ BRAK (ale to kluczowa informacja)
 - Brak kodów DTC (stored, pending, permanent) – **overboost nie jest zapisywany jako trwały błąd**.
-- **Potwierdzone:** po zgaszeniu i ponownym odpaleniu silnika flaga overboost/limp mode **znika**. Dlatego DTC zawsze pokazuje "NO DATA" – to nie wina klona ELM327, tylko natury tej usterki.
-- **Wniosek dla mechanika:** po podłączeniu do zgaszonego silnika nie zobaczy żadnego błędu. Trzeba łapać na żywo w trakcie jazdy (co zrobiliśmy) albo sprawdzić N75/wężyki fizycznie.
+- **Potwierdzone na żywo (test 10.10.2026):** odczyt DTC wykonany **dokładnie w trakcie aktywnego limp mode** → wszystkie tryby (03/07/0A) zwracają "NO DATA", a `0101` = 0 kodów. Czyli ECU **nigdy nie tworzy kodu** dla overboostu – to reakcja bezpieczeństwa w locie, bez zapisu.
+- **Wniosek dla mechanika:** po podłączeniu **zawsze** zobaczy "brak błędów", niezależnie od stanu. Jedyny ślad to **live data** (boost +1.55 bar → odcięcie). Diagnoza musi iść przez pomiar/N75/VNT, nie przez DTC.
 
 ### 2.6. Złapany overboost + limp mode (dowód na żywo) 🔴
 Druga jazda testowa z loggerem potwierdziła mechanizm usterki. Zarejestrowano **dwa pełne cykle**:
@@ -71,8 +76,8 @@ Log surowy: `data/overboost_log.txt`
 
 | Priorytet | Przyczyna | Opis |
 |-----------|-----------|------|
-| **1** | **N75** (zawór sterujący turbiną) | Uszkodzony lub zabrudzony – nie odcina podciśnienia, geometria turbiny w pozycji max doładowania → overboost. Kliknięcie przy 1500 RPM to typowy objaw. |
-| **2** | **Wężyki podciśnieniowe** (N75 → siłownik VNT) | Pęknięte, sparciałe lub zatkane olejem – nie przenoszą sygnału do siłownika. |
+| **1** | **Wężyk podciśnienia** (N75 → siłownik VNT) | ✅ **POTWIERDZONE** – pęknięty wężyk wykryty przy wymianie. To była główna przyczyna overboostu. |
+| **2** | **N75** (zawór sterujący turbiną) | Wymieniony (mógł być sprawny, ale nie zaszkodzi). |
 | **3** | **Siłownik VNT** (zapieczona geometria) | Zablokowane łopatki turbiny w pozycji "full boost" – wymaga czyszczenia lub regeneracji. |
 | **4** | **Uszczelka EGR** | Nieszczelność w układzie dolotowym – pogłębia problem, ale nie jest główną przyczyną overboostu. |
 
