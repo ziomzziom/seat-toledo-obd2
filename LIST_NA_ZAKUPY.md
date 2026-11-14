@@ -45,3 +45,20 @@
   np. Total Quartz 9000 5W-40 / Castrol Edge 5W-40 / Motul 8100 5W-40.
 
 Wstępnie pominięte: wężyki podciśnienia, uszczelka pod korek zaworów – decyzja w toku.
+
+---
+
+## Diagnostyka VAG – ✅ KABEL KKL ZAMÓWIONY
+
+| Sprzęt | Cena | Status |
+|--------|------|--------|
+| **VAG COM KKL 409.1 USB (FTDI FT232RL)** | ~80 zł | ✅ **Zamówiony** (Allegro) |
+
+**Po co:** odczyt błędów z aut VAG, których ELM327 (klon TDA81) nie obsługuje.
+
+| Auto | Silnik | Protokół | ELM327 | KKL+VCDS |
+|------|--------|----------|--------|----------|
+| Seat Toledo 2 (2001) | 1.9 TDI ASV | OBD-II / KWP2000 | ✅ | ✅ |
+| Skoda Octavia 1 (1999) | 1.6 benzyna | **KW1281** (brak OBD-II!) | ❌ | ✅ |
+
+**Kluczowy wniosek:** Octavia 1.6 benzyna 1999 **nie obsługuje OBD-II** (EOBD dla benzyn obowiązkowe dopiero od 2001). Mówi tylko zastrzeżonym protokołem VAG **KW1281**, który czyta wyłącznie VCDS/VWTool. Dlatego ELM327 jej nie odczyta – potrzebny KKL + VCDS Lite (darmowy z ross-tech.com).
