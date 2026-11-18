@@ -24,10 +24,24 @@
 ## Uruchomienie (po podpięciu kabla + zapłon/silnik)
 
 ```bash
-bash scripts/kkl_seat.sh
+bash scripts/kkl_seat.sh read        # odczyt kodów błędów
+bash scripts/kkl_seat.sh clear       # KASOWANIE kodów błędów
+bash scripts/kkl_seat.sh readclear   # odczyt → kasowanie → odczyt
 ```
 
-Skrypt robi: ustawia latency 1ms → odczytuje kody błędów.
+Skrypt robi: ustawia latency 1ms → wykonuje wybraną akcję.
+
+## ✅ KASOWANIE BŁĘDÓW – działa!
+
+Kabel KKL + `kw1281test` **potrafi kasować kody błędów** – czego ELM327 (klon TDA81)
+nigdy nie umiał. To jedna z najważniejszych funkcji:
+
+```bash
+bash scripts/kkl_seat.sh clear
+```
+
+Komenda: `ClearFaultCodes` (adres ECU=1, 9600 baud). Po kasowaniu zawsze zrób
+odczyt ponownie, żeby potwierdzić że błędy zniknęły.
 
 ## Pełny potencjał kabla (do zbudowania później)
 
